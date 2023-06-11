@@ -20,7 +20,10 @@ public class Main {
     }
 
     private static void fetchWithEntityGraph(EntityManager entityManager) {
+        //-- create query
         var query = entityManager.createQuery("from Person", Person.class);
+
+        //-- build EntityGraph
         var entityGraph = entityManager.createEntityGraph(Person.class);
         entityGraph.addAttributeNodes("address");
         entityGraph.addSubgraph("notes")
@@ -28,6 +31,7 @@ public class Main {
 
         query.setHint("javax.persistence.fetchgraph", entityGraph);
 
+        //-- process data
         var persons = query.getResultList();
         for (Person person : persons) {
             System.out.println(person.getAddress().getCity());
