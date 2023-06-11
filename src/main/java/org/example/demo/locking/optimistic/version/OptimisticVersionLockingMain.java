@@ -2,14 +2,11 @@ package org.example.demo.locking.optimistic.version;
 
 import org.example.demo.entity.Person;
 import org.example.demo.util.SessionUtil;
-import org.hibernate.jpa.QueryHints;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.LockModeType;
 import javax.persistence.Persistence;
 import javax.transaction.Transactional;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,10 +14,10 @@ public class OptimisticVersionLockingMain {
     public static void main(String[] args) {
         var emf = Persistence.createEntityManagerFactory("default");
 
-        // insertPerson();
+        //insertPerson();
 
-        //optimisticTypeVersion();
-        pessimisticTypeVersion();
+        optimisticTypeVersion();
+        //pessimisticTypeVersion();
 
 
     }
@@ -79,6 +76,11 @@ public class OptimisticVersionLockingMain {
             merlinManson.setFirstName("Merlin");
             merlinManson.setLastName("Manson");
             entityManager.persist(merlinManson);
+
+            var sakura = new Person();
+            sakura.setFirstName("sakura");
+            sakura.setLastName("sakura");
+            entityManager.persist(sakura);
         });
 
 
