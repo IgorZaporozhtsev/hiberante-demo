@@ -10,7 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "notes")
 @ToString(exclude = "person")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 public class Note {
 
@@ -20,6 +21,8 @@ public class Note {
 
     private String body;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Author author;
 
     @ManyToOne
     @JoinColumn(name = "person_id")

@@ -1,6 +1,7 @@
 package org.example.demo.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Table(name = "persons")
 @ToString
+@NoArgsConstructor
 public class Person {
 
     @Id
@@ -30,9 +32,13 @@ public class Person {
     @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     List<Note> notes = new ArrayList<>();
 
-    public void addNode(Note note) {
+    public void addNote(Note note) {
         note.setPerson(this);
         notes.add(note);
     }
 
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }
