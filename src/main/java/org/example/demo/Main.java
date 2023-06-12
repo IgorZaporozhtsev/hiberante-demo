@@ -28,8 +28,8 @@ public class Main {
         entityGraph.addAttributeNodes("address");
         entityGraph.addSubgraph("notes")
                 .addAttributeNodes("author");
-
-        query.setHint("javax.persistence.fetchgraph", entityGraph);
+        query.setHint("javax.persistence.fetchgraph", entityGraph); //LAZY - робе додаткові запити при звертані
+        //query.setHint("javax.persistence.loadgraph", entityGraph);  //EAGER дані одразу загружені
 
         //-- process data
         var persons = query.getResultList();
