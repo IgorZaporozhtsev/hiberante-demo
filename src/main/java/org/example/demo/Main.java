@@ -14,8 +14,14 @@ public class Main {
 
         SessionUtil.doInSession(entityManager -> {
             //setUpData(entityManager);
+            //---------
+
+            //---------
             //fetchNPlusOneData(entityManager);
-            fetchWithEntityGraph(entityManager); //fix N+1 //left outer join
+            //----------
+            //fetchWithEntityGraph(entityManager); //fix N+1 //left outer join
+
+
         });
     }
 
